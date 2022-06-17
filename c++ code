@@ -1,0 +1,45 @@
+
+// here we take stack and travers the array from n-1 to 0 and check if stack is empty then we push -1 in our res vector and if stack is not empty 
+//then we cheack if our top of stack is grater then arr[i] then we push top of stack in res vector and push arr[i] in stack 
+//but if top of stack is not greater then our arr[i] then we pop that top element from stack and check the next top element from stack. till stack is not
+//empty.
+
+
+
+
+class Solution{
+    public:
+    //Function to find the next greater element for each element of the array.
+vector<long long> nextLargerElement(vector<long long> arr, int n){
+       
+   stack<long long int>st;
+   vector<long long int>ans;
+   
+  for(int i=n-1;i>=0;i--){
+      
+       if(!st.empty()) {
+         while(!st.empty()){
+             long long int a=st.top();
+             if(a>arr[i]){
+                 ans.push_back(a);
+                 st.push(arr[i]);
+                 break;
+               }
+                st.pop();
+            }
+        }
+    
+      
+ if(st.empty()){
+          ans.push_back(-1);
+          st.push(arr[i]);
+          } 
+      
+     }
+       
+       
+  reverse(ans.begin(),ans.end());
+  return ans;
+       
+    }
+};
